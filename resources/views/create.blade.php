@@ -18,7 +18,7 @@
             </div>
         @endif
         {{--@if(!$user->name)--}}
-            {!! Form::model($user, ['route' => ['store'], 'class'=>'form-horizontal'  ]) !!}
+            {{--{!! Form::model($user, ['route' => ['store'], 'class'=>'form-horizontal'  ]) !!}--}}
         {{--@else--}}
             {{--{!! Form::model($user, ['route' => ['update', $user->id], 'method'=>'PUT', 'class'=>'form-horizontal'  ]) !!}--}}
         {{--@endif--}}
