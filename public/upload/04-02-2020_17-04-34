@@ -1,0 +1,89 @@
+﻿-- phpMyAdmin SQL Dump
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
+--
+-- Хост: 127.0.0.1:3306
+-- Время создания: Янв 29 2020 г., 17:25
+-- Версия сервера: 5.7.20
+-- Версия PHP: 7.1.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- База данных: `test_pyber`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `portals`
+--
+
+CREATE TABLE `portals` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type` enum('api','xml','json') DEFAULT 'api',
+  `name` varchar(50) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `uri` varchar(255) DEFAULT NULL,
+  `confirmed` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `paid_switch` tinyint(1) NOT NULL DEFAULT '0',
+  `rent_only` tinyint(1) NOT NULL DEFAULT '0',
+  `objects` tinyint(1) NOT NULL DEFAULT '1',
+  `purchase_orders` tinyint(1) NOT NULL DEFAULT '0',
+  `business_objects` tinyint(1) NOT NULL DEFAULT '0',
+  `soon` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Дамп данных таблицы `portals`
+--
+
+INSERT INTO `portals` (`id`, `type`, `name`, `slug`, `uri`, `confirmed`, `created_at`, `updated_at`, `paid_switch`, `rent_only`, `objects`, `purchase_orders`, `business_objects`, `soon`) VALUES
+(14, 'xml', 'Idealista', 'idealista', 'http://www.idealista.com', 1, '2016-06-08 11:14:52', '2016-06-08 11:14:54', 1, 0, 1, 0, 0, 0),
+(15, 'json', 'Website plugin', 'wpl', 'https://realtyna.com', 1, '2016-06-10 18:53:48', '2016-06-10 18:53:51', 0, 0, 1, 1, 1, 1),
+(16, 'xml', 'Funda', 'funda', 'http://www.funda.nl/', 1, '2016-09-27 18:34:02', '2016-09-27 18:34:03', 0, 0, 1, 0, 0, 0),
+(18, 'xml', 'Jaap', 'jaap', 'http://www.jaap.nl/', 1, '2016-09-28 12:34:11', '2016-09-28 12:34:13', 0, 0, 1, 0, 0, 0),
+(19, 'xml', 'Huislijn', 'huislijn', 'http://www.huislijn.nl/', 1, '2016-09-28 17:07:08', '2016-09-28 17:07:10', 0, 0, 1, 0, 0, 0),
+(20, 'xml', 'Kyero', 'kyero', 'http://.kyero.com', 1, '2016-10-28 20:45:34', '2016-10-28 20:45:36', 0, 0, 1, 0, 0, 0),
+(21, 'xml', 'Prian', 'prian', 'http://prian.ru/', 1, '2016-10-30 16:16:28', '2016-10-30 16:16:30', 0, 0, 1, 0, 0, 0),
+(22, 'xml', 'Pisos', 'pisos', 'http://www.pisos.com/', 1, '2016-10-30 18:46:07', '2016-10-30 18:46:10', 0, 0, 1, 0, 0, 0),
+(23, 'xml', 'Domcas (xml)', 'domcas-xml', 'http://www.domcas.com', 1, '2016-11-17 12:41:54', '2016-11-17 12:41:56', 0, 0, 1, 0, 0, 0),
+(24, 'xml', 'Cian', 'cian', 'https://www.cian.ru', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 0, 1, 0, 0, 0),
+(25, 'xml', 'Pararius huur', 'pararius', 'https://pararius.nl', 1, '2016-11-17 12:41:54', '2016-11-17 12:41:54', 0, 1, 1, 0, 0, 0),
+(26, 'xml', 'Huurwoningen', 'huurwoningen', 'https://huurwoningen.nl', 1, '2016-11-17 12:41:54', '2016-11-17 12:41:54', 0, 0, 1, 0, 0, 0);
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `portals`
+--
+ALTER TABLE `portals`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `portals`
+--
+ALTER TABLE `portals`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

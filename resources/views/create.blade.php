@@ -17,11 +17,11 @@
                 </ul>
             </div>
         @endif
-        {{--@if(!$user->name)--}}
-            {{--{!! Form::model($user, ['route' => ['store'], 'class'=>'form-horizontal'  ]) !!}--}}
+        @if(!$user->name)
+            {!! Form::model($user, ['route' => ['store'], 'files' => true, 'class'=>'form-horizontal'  ]) !!}
         {{--@else--}}
             {{--{!! Form::model($user, ['route' => ['update', $user->id], 'method'=>'PUT', 'class'=>'form-horizontal'  ]) !!}--}}
-        {{--@endif--}}
+        @endif
         <div class="form-group">
             {!! Form::label('user_name', 'User name:', ['class'=>'control-label col-sm-3']); !!}
             <div class="col-sm-9">
@@ -46,12 +46,13 @@
                     {!! Form::text('text', null, ['class'=>'form-control']) !!}
                 </div>
             </div>
-            {{--<div class="form-group">--}}
-                {{--{!! Form::label('file', 'File:', ['class'=>'control-label col-sm-3']); !!}--}}
-                {{--<div class="col-sm-9">--}}
-                    {{--{!! Form::text('file', null, ['class'=>'form-control']) !!}--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            <div class="form-group">
+                {!! Form::label('file', 'File:', ['class'=>'control-label col-sm-3']); !!}
+                <div class="col-sm-9">
+                    {!! Form::file('file', ['class'=>'form-control']) !!}
+                </div>
+            </div>
+            {{--{!! Form::text('ip', Request::ip(), ['style'=>'display:none']) !!}--}}
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
                 {!! Form::submit('Save new user in base', ['class'=>'btn btn-info']) !!}

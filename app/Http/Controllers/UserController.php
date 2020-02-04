@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+//use App\Storage;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -50,10 +52,23 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->text = $request->text;
+        $user->ip = $request->ip();
 
-//        $user->password = Hash::make($request->password);
+            $file = $request->file;
+//            $fName = $file->getClientOriginalName();
+                $fName = date('d-m-Y_H-i-s')->basename(".*");
+            $file->move(public_path().'\upload', $fName);
+            $user->file = $fName;
+
+
+//            $file = $request->file;
+////            $fName = $file . '-' . date('d-m-Y-H:i:s');
+//            $fName = $file->getClientOriginalName();
+//            Storage::putFileAs('public' . $fName, $file, $fName);
+//            $file->move(public_path().'public', $fName);
+
         $user->save();
-//        $user->roles()->sync($request->role);
+
         return redirect('/');
     }
 

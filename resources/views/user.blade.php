@@ -34,9 +34,9 @@
                 <td>{{ $value->file }}</td>
                 <td>{{ $value->created_at }}</td>
                 <td><a href="{{url('/create/' . $value->id . '/edit')}}" ><buttor class="btn btn-info">Edit</buttor></a>
-                    {!!Form::open(['url'=>'/'.$value->id,'method'=>'DELETE', 'style'=>'display:inline'])!!}
-                    {!!Form::submit('Delete', ['class'=>'btn btn-danger'])  !!}
-                    {!!Form::close()!!}
+                    {{--{!!Form::open(['url'=>'/'.$value->id,'method'=>'DELETE', 'style'=>'display:inline'])!!}--}}
+                    {{--{!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}--}}
+                    {{--{!!Form::close()!!}--}}
                 </td>
             </tr>
         @endforeach
