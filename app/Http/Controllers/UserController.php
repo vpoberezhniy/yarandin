@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-//use App\Storage;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -40,12 +38,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-//        $this->validate($request, [
-//            'name' => 'required|max:255',
-//            'email' => 'required|unique:users|email|max:255',
-//            'password' => 'required|min:6|',
-//            'pswd' => 'same:password',
-//        ]);
+        $this->validate($request, [
+            'user_name' => 'required|max:255',
+            'name' => 'required|max:50',
+            'email' => 'required|email|max:255',
+            'text' => 'required|min:20|',
+        ]);
 
         $user = new User();
         $user->user_name = $request->user_name;
@@ -53,20 +51,14 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->text = $request->text;
         $user->ip = $request->ip();
-
-            $file = $request->file;
-//            $fName = $file->getClientOriginalName();
-                $fName = date('d-m-Y_H-i-s')->basename(".*");
-            $file->move(public_path().'\upload', $fName);
-            $user->file = $fName;
-
-
-//            $file = $request->file;
-////            $fName = $file . '-' . date('d-m-Y-H:i:s');
-//            $fName = $file->getClientOriginalName();
-//            Storage::putFileAs('public' . $fName, $file, $fName);
-//            $file->move(public_path().'public', $fName);
-
+        if($request->file != null)
+            {
+                $file = $request->file;
+                $path_parts = pathinfo($request->file('file')->getClientOriginalName());
+                $fName = date('d-m-Y_H-i-s') . '.' . $path_parts['extension'];
+                $file->move(public_path() . '\upload', $fName);
+                $user->file = $fName;
+            }
         $user->save();
 
         return redirect('/');
@@ -91,9 +83,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('create', compact('user'));
-
+        //
     }
 
     /**
@@ -105,23 +95,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        $this->validate($request, [
-//            'name' => 'required|max:255',
-//            'email' => 'required|unique:users,email,'.$id.'|email|max:255',
-//            'password' => 'sometimes|nullable|min:6',
-//            'pswd' => 'same:password',
-//        ]);
-
-        $user = User::find($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if($request->password) {
-            $user->password = Hash::make($request->password);
-        }
-        $user->save();
-        $user->roles()->sync($request->role);
-
-        return redirect('/users');
+        //
     }
 
     /**
@@ -132,8 +106,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return redirect('/');
+       //
     }
 }

@@ -19,8 +19,8 @@
         @endif
         @if(!$user->name)
             {!! Form::model($user, ['route' => ['store'], 'files' => true, 'class'=>'form-horizontal'  ]) !!}
-        {{--@else--}}
-            {{--{!! Form::model($user, ['route' => ['update', $user->id], 'method'=>'PUT', 'class'=>'form-horizontal'  ]) !!}--}}
+        @else
+            {!! Form::model($user, ['route' => ['update', $user->id], 'method'=>'PUT', 'files' => true, 'class'=>'form-horizontal'  ]) !!}
         @endif
         <div class="form-group">
             {!! Form::label('user_name', 'User name:', ['class'=>'control-label col-sm-3']); !!}
