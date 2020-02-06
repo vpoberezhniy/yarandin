@@ -7,7 +7,6 @@
 @section('content')
 
     <div class="col-md-8 col-md-offset-2">
-
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
@@ -52,13 +51,11 @@
                     {!! Form::file('file', ['class'=>'form-control']) !!}
                 </div>
             </div>
-            {{--{!! Form::text('ip', Request::ip(), ['style'=>'display:none']) !!}--}}
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
                 {!! Form::submit('Save new user in base', ['class'=>'btn btn-info']) !!}
             </div>
         </div>
-
         {!! Form::close() !!}
     </div>
 

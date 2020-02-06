@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -13,11 +14,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::all();
-        return view('user', compact('user'));
+
+        $getUser = DB::table('users');
+        if(!empty($request->from) && !empty($request->to))
+            {
+                $getUser->whereBetween('created_at', [$request->from, $request->to]);
+            }
+        if(!empty($request->order))
+            {
+                $getUser->orderBy('created_at', $request->order);
+            }
+        $user = $getUser->get();
+
+        return view('user', compact( 'user'));
     }
+
 
     /**
      * Show the form for creating a new resource.

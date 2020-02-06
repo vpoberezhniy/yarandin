@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('user_name');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('text'); /*Здесь можно было поставить и BLOB, но я не знаю насколько большим будет текст. Если нужно будет изменить, это можно будет поправить в самой БД а так же не забыть изменить в миграции*/
+            $table->text('text'); /*Здесь можно было поставить и BLOB, но я не знаю насколько большим будет текст. Если нужно будет изменить, это можно будет поправить в самой БД а так же не забыть изменить в миграции*/
             $table->string('ip');
             $table->string('file');
             $table->timestamps();
