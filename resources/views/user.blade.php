@@ -18,6 +18,10 @@
                 {!! Form::date('to') !!}
             </div>
             <div class="form-group">
+                {!! Form::label('sort', 'Sort:'); !!}
+                {!! Form::select('sort', ['date_up', 'date_down']) !!}
+            </div>
+            <div class="form-group">
                 {!! Form::submit('Filter') !!}
             </div>
         {!! Form::close() !!}

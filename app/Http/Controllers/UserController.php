@@ -15,16 +15,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-
         $getUser = DB::table('users');
-        if(!empty($request->from) && !empty($request->to))
+        if(!empty($request->from) && !empty($request->to) && !empty($request->sort))
             {
-                $getUser->whereBetween('created_at', [$request->from, $request->to]);
+                $getUser->whereBetween('created_at', [$request->from, $request->to, $request->sort]);
             }
-        if(!empty($request->order))
-            {
-                $getUser->orderBy('created_at', $request->order);
-            }
+        if(!empty($request->sort)) {
+            $getUser->orderBy('created_at', 'desc')->get();
+        }
         $user = $getUser->get();
 
         return view('user', compact( 'user'));
