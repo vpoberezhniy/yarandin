@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     /**
@@ -51,12 +50,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'user_name' => 'required|max:255',
-            'name' => 'required|max:50',
-            'email' => 'required|email|max:255',
-            'text' => 'required|min:20|',
-        ]);
+        if($request->isMethod('post')) {
+            $input = $request->except('_token');
+            $validator = Validator::make($input,
+                [
+                    'user_name' => 'required|max:255',
+                    'name' => 'required|unique:users|max:80',
+                    'email' => 'required|email|unique:users|max:255',
+                    'text' => 'required|min:20|'
+                ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('create')->withErrors($validator)->withInput();
+            }
+        }
 
         $user = new User();
         $user->user_name = $request->user_name;
